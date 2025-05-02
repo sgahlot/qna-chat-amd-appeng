@@ -1,4 +1,4 @@
-{{- if (.Values.global.build).enabled | default "true" }}
+{{- if .Values.global.buildEnabled }}
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
