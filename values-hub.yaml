@@ -182,20 +182,20 @@ clusterGroup:
           kind: BuildConfig
           jqPathExpressions:
             - '.spec.paused'
-    reranking:
-      name: reranking
-      namespace: amd-llm
-      project: amd-llm
-      path: charts/all/reranking
-      ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jqPathExpressions:
-            - '.spec.template.spec.containers[].image'
-        - group: build.openshift.io
-          kind: BuildConfig
-          jqPathExpressions:
-            - '.spec.paused'
+    # reranking:
+    #   name: reranking
+    #   namespace: amd-llm
+    #   project: amd-llm
+    #   path: charts/all/reranking
+    #   ignoreDifferences:
+    #     - group: apps
+    #       kind: Deployment
+    #       jqPathExpressions:
+    #         - '.spec.template.spec.containers[].image'
+    #     - group: build.openshift.io
+    #       kind: BuildConfig
+    #       jqPathExpressions:
+    #         - '.spec.paused'
     llm:
       name: llm
       namespace: amd-llm
@@ -210,20 +210,20 @@ clusterGroup:
           kind: BuildConfig
           jqPathExpressions:
             - '.spec.paused'
-    embedding:
-      name: embedding
-      namespace: amd-llm
-      project: amd-llm
-      path: charts/all/embedding
-      ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jqPathExpressions:
-            - '.spec.template.spec.containers[].image'
-        - group: build.openshift.io
-          kind: BuildConfig
-          jqPathExpressions:
-            - '.spec.paused'
+    # embedding:
+    #   name: embedding
+    #   namespace: amd-llm
+    #   project: amd-llm
+    #   path: charts/all/embedding
+    #   ignoreDifferences:
+    #     - group: apps
+    #       kind: Deployment
+    #       jqPathExpressions:
+    #         - '.spec.template.spec.containers[].image'
+    #     - group: build.openshift.io
+    #       kind: BuildConfig
+    #       jqPathExpressions:
+    #         - '.spec.paused'
     dataprep:
       name: dataprep
       namespace: amd-llm
