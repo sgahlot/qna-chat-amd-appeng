@@ -42,17 +42,12 @@ global:
         value: /home/user/.local/lib/python3.11/site-packages:/home/user
       - name: SSL_CERT_FILE
         value: /tmp/bundle.crt
-      - name: REQUESTS_CA_BUNDLE
-        value: /tmp/bundle.crt
       - name: LLM_MODEL_ID
         value: jary-serve
     volume:
       tmp:
         name: temp-data
         path: /tmp/temp-data
-      cert:
-        name: endpoint-cert
-        path: /tmp
-#      rhoai_ca:
-#        name: rhoai-ca-bundle
-#        path: /rhoai-ca
+#      cert:
+#        name: endpoint-cert
+#        path: /tmp
