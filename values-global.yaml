@@ -9,8 +9,7 @@ global:
     namespace: amd-llm
     build_envs: []
     runtime_envs: []
-  build:
-    enabled: false
+  buildEnabled: false
 
 main:
   clusterGroupName: hub
