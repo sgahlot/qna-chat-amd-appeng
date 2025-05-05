@@ -142,52 +142,23 @@ clusterGroup:
       namespace: amd-llm
       project: amd-llm
       path: charts/all/redis-vector-db
-    amd-llm-init:
-      name: amd-llm-init
-      namespace: amd-llm
-      project: amd-llm
-      path: charts/all/amd-llm-init
-      ignoreDifferences:
-        - group: machineconfiguration.openshift.io
-          kind: KubeletConfig
-          name:
-          jsonPointers:
-            - /metadata/labels/argocd.argoproj.io~1instance
-            - /metadata/annotations/kubectl.kubernetes.io~1last-applied-configuration
-    text-embeddings-inference:
-      name: text-embeddings-inference
-      namespace: amd-llm
-      project: amd-llm
-      path: charts/all/tei
-      ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jqPathExpressions:
-            - '.spec.template.spec.containers[].image'
-        - group: build.openshift.io
-          kind: BuildConfig
-          jqPathExpressions:
-            - '.spec.paused'
-    retriever:
-      name: retriever
-      namespace: amd-llm
-      project: amd-llm
-      path: charts/all/retriever
-      ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jqPathExpressions:
-            - '.spec.template.spec.containers[].image'
-        - group: build.openshift.io
-          kind: BuildConfig
-          jqPathExpressions:
-            - '.spec.paused'
-    # SG: Commenting out reranking microservice as the backend makes use of "tei-reranker" service instead
-    # reranking:
-    #   name: reranking
+    # amd-llm-init:
+    #   name: amd-llm-init
     #   namespace: amd-llm
     #   project: amd-llm
-    #   path: charts/all/reranking
+    #   path: charts/all/amd-llm-init
+    #   ignoreDifferences:
+    #     - group: machineconfiguration.openshift.io
+    #       kind: KubeletConfig
+    #       name:
+    #       jsonPointers:
+    #         - /metadata/labels/argocd.argoproj.io~1instance
+    #         - /metadata/annotations/kubectl.kubernetes.io~1last-applied-configuration
+    # text-embeddings-inference:
+    #   name: text-embeddings-inference
+    #   namespace: amd-llm
+    #   project: amd-llm
+    #   path: charts/all/tei
     #   ignoreDifferences:
     #     - group: apps
     #       kind: Deployment
@@ -197,26 +168,11 @@ clusterGroup:
     #       kind: BuildConfig
     #       jqPathExpressions:
     #         - '.spec.paused'
-    llm:
-      name: llm
-      namespace: amd-llm
-      project: amd-llm
-      path: charts/all/llm
-      ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jqPathExpressions:
-            - '.spec.template.spec.containers[].image'
-        - group: build.openshift.io
-          kind: BuildConfig
-          jqPathExpressions:
-            - '.spec.paused'
-    # SG: Commenting out reranking microservice as the backend makes use of "tei-reranker" service instead
-    # embedding:
-    #   name: embedding
+    # retriever:
+    #   name: retriever
     #   namespace: amd-llm
     #   project: amd-llm
-    #   path: charts/all/embedding
+    #   path: charts/all/retriever
     #   ignoreDifferences:
     #     - group: apps
     #       kind: Deployment
@@ -226,49 +182,93 @@ clusterGroup:
     #       kind: BuildConfig
     #       jqPathExpressions:
     #         - '.spec.paused'
-    dataprep:
-      name: dataprep
-      namespace: amd-llm
-      project: amd-llm
-      path: charts/all/dataprep
-      ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jqPathExpressions:
-            - '.spec.template.spec.containers[].image'
-        - group: build.openshift.io
-          kind: BuildConfig
-          jqPathExpressions:
-            - '.spec.paused'
-    chatqna-ui:
-      name: chatqna-ui
-      namespace: amd-llm
-      project: amd-llm
-      path: charts/all/chatqna-ui
-      ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jqPathExpressions:
-            - '.spec.template.spec.containers[].image'
-            - '.spec.template.spec.initContainers[].image'
-        - group: build.openshift.io
-          kind: BuildConfig
-          jqPathExpressions:
-            - '.spec.paused'
-    chatqna-backend:
-      name: chatqna-backend
-      namespace: amd-llm
-      project: amd-llm
-      path: charts/all/chatqna-amd-backend
-      ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jqPathExpressions:
-            - '.spec.template.spec.containers[].image'
-        - group: build.openshift.io
-          kind: BuildConfig
-          jqPathExpressions:
-            - '.spec.paused'
+    # # SG: Commenting out reranking microservice as the backend makes use of "tei-reranker" service instead
+    # # reranking:
+    # #   name: reranking
+    # #   namespace: amd-llm
+    # #   project: amd-llm
+    # #   path: charts/all/reranking
+    # #   ignoreDifferences:
+    # #     - group: apps
+    # #       kind: Deployment
+    # #       jqPathExpressions:
+    # #         - '.spec.template.spec.containers[].image'
+    # #     - group: build.openshift.io
+    # #       kind: BuildConfig
+    # #       jqPathExpressions:
+    # #         - '.spec.paused'
+    # llm:
+    #   name: llm
+    #   namespace: amd-llm
+    #   project: amd-llm
+    #   path: charts/all/llm
+    #   ignoreDifferences:
+    #     - group: apps
+    #       kind: Deployment
+    #       jqPathExpressions:
+    #         - '.spec.template.spec.containers[].image'
+    #     - group: build.openshift.io
+    #       kind: BuildConfig
+    #       jqPathExpressions:
+    #         - '.spec.paused'
+    # # SG: Commenting out reranking microservice as the backend makes use of "tei-reranker" service instead
+    # # embedding:
+    # #   name: embedding
+    # #   namespace: amd-llm
+    # #   project: amd-llm
+    # #   path: charts/all/embedding
+    # #   ignoreDifferences:
+    # #     - group: apps
+    # #       kind: Deployment
+    # #       jqPathExpressions:
+    # #         - '.spec.template.spec.containers[].image'
+    # #     - group: build.openshift.io
+    # #       kind: BuildConfig
+    # #       jqPathExpressions:
+    # #         - '.spec.paused'
+    # dataprep:
+    #   name: dataprep
+    #   namespace: amd-llm
+    #   project: amd-llm
+    #   path: charts/all/dataprep
+    #   ignoreDifferences:
+    #     - group: apps
+    #       kind: Deployment
+    #       jqPathExpressions:
+    #         - '.spec.template.spec.containers[].image'
+    #     - group: build.openshift.io
+    #       kind: BuildConfig
+    #       jqPathExpressions:
+    #         - '.spec.paused'
+    # chatqna-ui:
+    #   name: chatqna-ui
+    #   namespace: amd-llm
+    #   project: amd-llm
+    #   path: charts/all/chatqna-ui
+    #   ignoreDifferences:
+    #     - group: apps
+    #       kind: Deployment
+    #       jqPathExpressions:
+    #         - '.spec.template.spec.containers[].image'
+    #         - '.spec.template.spec.initContainers[].image'
+    #     - group: build.openshift.io
+    #       kind: BuildConfig
+    #       jqPathExpressions:
+    #         - '.spec.paused'
+    # chatqna-backend:
+    #   name: chatqna-backend
+    #   namespace: amd-llm
+    #   project: amd-llm
+    #   path: charts/all/chatqna-amd-backend
+    #   ignoreDifferences:
+    #     - group: apps
+    #       kind: Deployment
+    #       jqPathExpressions:
+    #         - '.spec.template.spec.containers[].image'
+    #     - group: build.openshift.io
+    #       kind: BuildConfig
+    #       jqPathExpressions:
+    #         - '.spec.paused'
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
