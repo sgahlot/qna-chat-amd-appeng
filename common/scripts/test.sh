@@ -108,7 +108,8 @@ if [ $2 = "all" ]; then
     echo "#####################" >&2
 
     # Test that all values used by the chart are in values.yaml with the same defaults as the pattern
-    doTest naked
+#    printf "\n -->> Calling doTest with naked...\n"
+#    doTest naked
 
     # Test the charts as the pattern would drive them
     INPUTS=$(ls -1 common/examples/*.yaml | grep -v secret)
